@@ -1,11 +1,16 @@
-import HS3.IPlusPlus;
+import HS3.OpdrachtenHS3;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        IPlusPlus.opdrachtDrie();
+        // Hoofdstuk 3
+        OpdrachtenHS3.opdrachtDrieEen();
+        OpdrachtenHS3.opdrachtDrieTwee();
+        OpdrachtenHS3.opdrachtDrieDrie();
+        OpdrachtenHS3.OpdrachtDrieVier();
 
+        // Hoofdstuk 4
 
 
     }
