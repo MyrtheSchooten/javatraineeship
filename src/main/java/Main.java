@@ -1,4 +1,4 @@
-import HS3.OpdrachtenHS3;
+import UitwerkingenOpdrachten.OpdrachtenHS3;
 
 public class Main {
 

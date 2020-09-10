@@ -1,4 +1,4 @@
-package HS3;
+package UitwerkingenOpdrachten;
 
 public class OpdrachtenHS3 {
 
