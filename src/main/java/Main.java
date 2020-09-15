@@ -8,9 +8,13 @@ public class Main {
         OpdrachtenHS3.opdrachtDrieEen();
         OpdrachtenHS3.opdrachtDrieTwee();
         OpdrachtenHS3.opdrachtDrieDrie();
-        OpdrachtenHS3.OpdrachtDrieVier();
+        OpdrachtenHS3.opdrachtDrieVier();
+        OpdrachtenHS3.opdrachtDrieVijf();
+        OpdrachtenHS3.opdrachtDrieZes();
 
         // Hoofdstuk 4
+
+
 
 
     }
