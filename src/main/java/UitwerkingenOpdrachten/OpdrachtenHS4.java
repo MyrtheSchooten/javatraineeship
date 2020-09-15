@@ -7,7 +7,8 @@ class Hourglass {
     public static void main(String[] args) {
         while (true) {
             try {
-                testInput();
+                int n = testInput();
+                printHourglass(n);
                 break;
             } catch (EvenNumberException e) {
                 System.err.println(e.getMessage());
@@ -18,7 +19,7 @@ class Hourglass {
 
     }
 
-    private static void testInput() throws EvenNumberException {
+    private static int testInput() throws EvenNumberException {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Voer een oneven getal in.");
@@ -29,8 +30,7 @@ class Hourglass {
             throw new EvenNumberException();
         }
 
-        printHourglass(n);
-
+        return n;
     }
 
 
