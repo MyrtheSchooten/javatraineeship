@@ -1,4 +1,4 @@
-package UitwerkingenOpdrachten;
+package UitwerkingenHS1TM4;
 
 public class EvenNumberException extends Exception {
     public EvenNumberException() {

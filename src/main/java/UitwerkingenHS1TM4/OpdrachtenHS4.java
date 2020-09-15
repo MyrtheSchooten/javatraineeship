@@ -1,4 +1,4 @@
-package UitwerkingenOpdrachten;
+package UitwerkingenHS1TM4;
 
 import java.util.Scanner;
 
