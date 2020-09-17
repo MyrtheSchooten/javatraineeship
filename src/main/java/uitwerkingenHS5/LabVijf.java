@@ -1,4 +1,4 @@
-package UitwerkingenHS5;
+package uitwerkingenHS5;
 
 public class LabVijf {
     public int greatest(int p1, int p2) {

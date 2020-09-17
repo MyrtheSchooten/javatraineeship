@@ -1,4 +1,4 @@
-package uitwerkingenHS7;
+package uitwerkingenHS7hw;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package uitwerkingenHS7;
+package uitwerkingenHS7hw;
 
 public class Person {
     // attributes
