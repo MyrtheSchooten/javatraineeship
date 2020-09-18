@@ -1,7 +1,4 @@
 package uitwerkingenHS7Lab;
-
-import java.math.BigDecimal;
-
 public class BankAccount {
 
     private long accountNumber;
@@ -16,12 +13,11 @@ public class BankAccount {
         this.interestRate = interestRate;
     }
 
-    public double withdrawMoney(double toWithdraw) {
+    public double withdrawMoney(double toWithdraw) throws BelowZeroException {
         if (this.balance - toWithdraw > MIN_BALANCE) {
             this.balance = this.balance - toWithdraw;
             return this.balance;
-        }
-        return 0;
+        } throw new BelowZeroException();
     }
 
     public double depositMoney(double toDeposit) {
@@ -29,11 +25,9 @@ public class BankAccount {
         return this.balance;
     }
 
-    public double getInterest(int years){
-        double interest = (this.balance*interestRate)*years;
-        return interest;
+    public double getInterest(int years) {
+        return this.balance * Math.pow(1 + interestRate / 100, years);
     }
-
 
     public long getAccountNumber() {
         return this.accountNumber;
@@ -46,6 +40,9 @@ public class BankAccount {
     public void setInterestRate(double interestRate)
     { this.interestRate = interestRate; }
 
+    public String naarTekst() {
+        return "BankAccount:" + "accountNumber = " + accountNumber + ", balance = " + balance + ", interestRate = " + interestRate;
+    }
 }
 
 
