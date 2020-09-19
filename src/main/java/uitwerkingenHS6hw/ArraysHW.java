@@ -17,6 +17,8 @@ public class ArraysHW {
         row[3] = 4;
         System.out.println(Arrays.toString(opdrachtZes.extend(row)));
 
+        long[] dubbeleRow =  opdrachtZes.multiply(row, 2);
+        System.out.println(Arrays.toString(dubbeleRow));
 
     }
 }

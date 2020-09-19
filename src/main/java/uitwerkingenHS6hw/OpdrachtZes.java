@@ -30,6 +30,13 @@ public class OpdrachtZes {
         return copy;
     }
 
+    public long[] multiply(long[] input, int multiplier) {
+        for (int i = 0; i < input.length; i++) {
+            input[i] *= multiplier;
+        }
+
+        return input;
+    }
 
 
 }
