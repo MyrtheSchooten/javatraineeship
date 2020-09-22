@@ -5,7 +5,6 @@ public class Application {
 
         Bank deBank = new Bank();
 
-
         BankAccount account1 = new BankAccount(123, 100, 0.01);
         BankAccount account2 = new BankAccount(234, 100, 0.02);
         BankAccount account3 = new BankAccount(345, 100, 0.03);
@@ -27,6 +26,10 @@ public class Application {
         deBank.addNewAccount(account8);
         deBank.addNewAccount(account9);
         deBank.addNewAccount(account10);
+
+        Person persoon1 = new Person("Achternaam");
+        account1.setOwner(persoon1);
+
 
 
         //  It must be possible to withdraw and deposit money from and to a bank account.

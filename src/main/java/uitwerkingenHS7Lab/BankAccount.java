@@ -6,11 +6,13 @@ public class BankAccount {
     private double interestRate;
 
     public static final int MIN_BALANCE = 0;
+    private Person owner;
 
     public BankAccount(long accountNumber, double balance, double interestRate) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.interestRate = interestRate;
+        this.owner = owner;
     }
 
     public double withdrawMoney(double toWithdraw) throws BelowZeroException {
@@ -42,6 +44,10 @@ public class BankAccount {
 
     public String naarTekst() {
         return "BankAccount:" + "accountNumber = " + accountNumber + ", balance = " + balance + ", interestRate = " + interestRate;
+    }
+
+    public void setOwner(Person owner) {
+      this.owner = owner;
     }
 }
 

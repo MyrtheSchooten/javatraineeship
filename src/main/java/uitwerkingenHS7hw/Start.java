@@ -17,6 +17,12 @@ public class Start {
         System.out.println(p.getAge());
 
         System.out.println(Person.numberOfPossibleGenders);
+
+
     }
+
+    protected void finalize() throws Throwable {
+        super.finalize(); }
+
 
     }
