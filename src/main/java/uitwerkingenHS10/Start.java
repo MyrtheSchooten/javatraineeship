@@ -9,7 +9,7 @@ public class Start {
         Human employee = new Employee("HardeWerker");
         Human teacher = new Teacher("Leraar");
 
-       mens.greet();
+
        android.greet();
        employee.greet();
        teacher.greet();
