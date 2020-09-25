@@ -2,7 +2,6 @@ package uitwerkingenHS10.CSM;
 
 public class RegularCard extends Card {
 
-
     protected RegularCard(int cardId, String name, double credit) {
         super(cardId, name, credit);
     }

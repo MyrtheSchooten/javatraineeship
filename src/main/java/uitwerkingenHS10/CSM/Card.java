@@ -13,5 +13,9 @@ public abstract class Card  {
     }
 
     public abstract boolean pay(int amount);
+
+    public String naarTekst() {
+        return "Card:" + "cardId = " + cardId + ", name = " + name + ", credit = " + credit;
+    }
 }
 

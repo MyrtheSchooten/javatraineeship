@@ -9,6 +9,7 @@ public class GoldCard extends Card {
         this.setDiscount(discount);
     }
 
+
     public int setDiscount(int discount) throws OutOfRangeException {
         if (discount >= 1 && discount <= 30) {
             this.discount = discount;
@@ -23,7 +24,8 @@ public class GoldCard extends Card {
 
     @Override
     public boolean pay(int amount) {
-        this.credit = credit - (amount - discount);
+        double amountAfterDiscount = amount - discount;
+        this.credit = credit - amountAfterDiscount;
         return true;
     }
 
