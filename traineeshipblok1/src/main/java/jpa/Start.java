@@ -1,42 +1,131 @@
 package jpa;
 
-import jpa.dao.EmployeeDao;
-import jpa.domain.Employee;
+import jpa.dao.AuthordDao;
+import jpa.dao.BookDao;
+import jpa.dao.Dao;
+import jpa.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class Start {
     static Logger log = LoggerFactory.getLogger(Start.class);
 
     public static void main(String[] args) {
-        new Start().run();
+        EntityManager entityManager = Persistence.createEntityManagerFactory("MySQL").createEntityManager();
+        AuthordDao dao = new AuthordDao(entityManager);
+
+        new Start().run(dao, entityManager);
+        new Start().logAll(dao);
+
     }
 
-    private void run() {
-        EntityManager entityManager = Persistence.createEntityManagerFactory("MySQL").createEntityManager();
-        EmployeeDao dao = new EmployeeDao(entityManager);
+    private void run(AuthordDao dao, EntityManager entityManager) {
+        ////////////////////////////////////////// --> maken en saven authors
+        Author een = new Author("Bakker");
+        dao.save(een);
+        Author twee = new Author("Smit");
+        dao.save(twee);
+        Author drie = new Author("Meijer");
+        dao.save(drie);
+        Author vier = new Author("Mulder");
+        dao.save(vier);
+        Author vijf = new Author("de Boer");
+        dao.save(vijf);
+        Author zes = new Author("Pieters");
+        dao.save(zes);
 
-        Employee een = new Employee("Een",30);
+        /////////////////////////////////////////// --> delete author 2
+        dao.delete(twee);
+
+        /////////////////////////////////////////// --> update naam author 1
+        dao.updateName(1, "Hendriks");
         dao.save(een);
 
-        Employee twee = new Employee("Twee",60);
-        dao.save(twee);
+        ////////////////////////////////////////// --> try setters
+        drie.setHasDebuted(Boolean.TRUE);
+        vijf.setHasDebuted(Boolean.TRUE);
+        zes.setHasDebuted(Boolean.TRUE);
+        dao.update(drie);
+        dao.update(vijf);
+        dao.update(zes);
 
-        Employee drie = new Employee("Drie",27);
+        /////////////////////////////////////////// --> find by lastname
+        log(dao.findBy("Meijer"));
+
+        /////////////////////////////////////////// --> enum
+        een.setGenre(Genre.FICTION);
+        dao.save(een);
+
+        drie.setGenre(Genre.CHILDREN);
         dao.save(drie);
 
-        Employee employee = dao.get(1);
-        log(employee);
+        vier.setGenre(Genre.BIOGRAPHY);
+        dao.save(vier);
 
-        Employee employee2 = dao.get(2);
-        log(employee2);
+        vijf.setGenre(Genre.ROMANCE);
+        dao.save(vijf);
 
-        Employee employee3 = dao.get(3);
-        log(employee3);
+        zes.setGenre(Genre.FICTION);
+        dao.save(zes);
 
+        ///////////////////////////////////////////////// --> unidirectional
+        Publisher theBestPublisher = new Publisher("the Best Publisher");
+        Publisher eenAnderePublisher = new Publisher("een Andere Publisher");
+        Publisher deLaaststePublisher = new Publisher("de Laatste Publisher");
+
+        Dao<Publisher> publisherDao = new Dao<>(entityManager);
+        publisherDao.save(theBestPublisher);
+        publisherDao.save(eenAnderePublisher);
+        publisherDao.save(deLaaststePublisher);
+
+        een.setSignedBy(theBestPublisher);
+        drie.setSignedBy(deLaaststePublisher);
+        vier.setSignedBy(eenAnderePublisher);
+        vijf.setSignedBy(theBestPublisher);
+        zes.setSignedBy(deLaaststePublisher);
+
+        dao.update(een);
+        dao.update(drie);
+        dao.update(vier);
+        dao.update(vijf);
+        dao.update(zes);
+
+        List<Author> soft = dao.findByPublisher("best");
+        soft.forEach(this::log);
+
+        ////////////////////////////////////////////////// --> bidirectional
+        Dao assistantDao = new Dao(entityManager);
+
+        Assistant assistant1 = new Assistant("Assistent 1");
+        Assistant assistant2 = new Assistant("Assistent 2");
+        Assistant assistant3 = new Assistant("Assistent 3");
+        assistantDao.save(assistant1);
+        assistantDao.save(assistant2);
+        assistantDao.save(assistant3);
+
+        een.setAssistant(assistant3);
+        drie.setAssistant(assistant2);
+        vier.setAssistant(assistant2);
+        vijf.setAssistant(assistant1);
+        zes.setAssistant(assistant1);
+
+        dao.update(een);
+        dao.update(drie);
+        dao.update(vier);
+        dao.update(vijf);
+        dao.update(zes);
+
+        ////////////////////////////////////////////////// --> test one-to-many (Book testen)
+
+    }
+
+    private void logAll(AuthordDao dao) {
+        List<Author> allAuthors = dao.findAllWithNamedQuery();
+        log(allAuthors);
     }
 
     private void log(Object o) {
